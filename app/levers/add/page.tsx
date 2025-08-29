@@ -72,7 +72,7 @@ export default function AddLever() {
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 >
-                  <option value="">Select Nature</option>
+                  <option value="" disabled>Select Nature</option>
                   <option value="IT">IT</option>
                   <option value="HR">HR</option>
                   <option value="Finance">Finance</option>
@@ -142,7 +142,7 @@ export default function AddLever() {
                   required
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Describe the cost-saving initiative..."
+                  placeholder="Describe the cost-saving initiative"
                 />
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function AddLever() {
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 >
-                  <option value="">Select Complexity</option>
+                  <option value="" disabled>Select Complexity</option>
                   <option value="Low">Low</option>
                   <option value="Medium">Medium</option>
                   <option value="High">High</option>
