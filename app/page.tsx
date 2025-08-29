@@ -12,6 +12,7 @@ interface Lever {
 
 export default function Home() {
   const [levers, setLevers] = useState<Lever[]>([]);
+  const [columns, setColumns] = useState<String[]>([]);
 
   // For now, we'll use mock data. In a real app, this would come from a database or API
   useEffect(() => {
@@ -31,6 +32,23 @@ export default function Home() {
       },
     ];
     setLevers(sampleData);
+    const sampleColumns: String[] = [
+      "Nature",
+      "Workstream",
+      "Substream",
+      "Titre",
+      "Description",
+      "Impact FTE [yes/no]",
+      "Owner",
+      "Complexity",
+      "Impacted BU",
+      "Savings (Low, m€)",
+      "Savings (High, m€)",
+      "FTE impact (Low, m€)",
+      "FTE impact (High, m€)",
+      "Actions",
+    ]
+    setColumns(sampleColumns)
   }, []);
 
   // Calculate total impact
@@ -59,28 +77,17 @@ export default function Home() {
       </header>
       
       <main>
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold mb-4">Total Impact: {formatCurrency(totalImpact)}</h2>
-        </div>
-        
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead>
-                  <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                      Function
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                      Description
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                      Impact
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                      Actions
-                    </th>
+                  <tr className="text-white text-left bg-blue-950">
+                    {columns.map((column, index) => (
+                      <th key={index} className="px-4 py-3">
+                        {column}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
