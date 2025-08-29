@@ -12,14 +12,14 @@ export async function GET() {
       Substream: lever.substream,
       Titre: lever.titre,
       Description: lever.description,
-      "FTE impact": lever.fteImpact,
+      "FTE Impact": lever.fteImpact,
       Owner: lever.owner,
       Complexity: lever.complexity,
       "Impacted BU": lever.impactedBU,
       "Savings (Low, m€)": lever.savingsLowMEUR,
       "Savings (High, m€)": lever.savingsHighMEUR,
-      "FTE Count Low": lever.fteCountLow,
-      "FTE Count High": lever.fteCountHigh,
+      "FTE Impact (Low, #)": lever.fteCountLow,
+      "FTE Impact (High, #)": lever.fteCountHigh,
     }))
     return NextResponse.json(transformedLevers)
   } catch (error) {

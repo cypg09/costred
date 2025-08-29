@@ -10,14 +10,14 @@ interface Lever {
   Substream: string;
   Titre: string;
   Description: string;
-  "FTE impact": boolean;
+  "FTE Impact": boolean;
   Owner: string;
   Complexity: string;
   "Impacted BU": string;
   "Savings (Low, m€)": number;
   "Savings (High, m€)": number;
-  "FTE Count Low": number;
-  "FTE Count High": number;
+  "FTE Impact (Low, #)": number;
+  "FTE Impact (High, #)": number;
 }
 
 interface LeverRowProps {
@@ -43,7 +43,7 @@ function LeverRow({ lever }: LeverRowProps) {
         {lever.Description}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
-        {lever["FTE impact"] ? "Yes" : "No"}
+        {lever["FTE Impact"] ? "Yes" : "No"}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
         {lever.Owner}
@@ -61,10 +61,10 @@ function LeverRow({ lever }: LeverRowProps) {
         {lever["Savings (High, m€)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["FTE Count Low"]}
+        {lever["FTE Impact (Low, #)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["FTE Count High"]}
+        {lever["FTE Impact (High, #)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm">
         <div className="flex space-x-2">
@@ -102,14 +102,14 @@ export default function Home() {
       "Substream",
       "Titre",
       "Description",
-      "FTE impact",
+      "FTE Impact",
       "Owner",
       "Complexity",
       "Impacted BU",
       "Savings (Low, m€)",
       "Savings (High, m€)",
-      "FTE Count Low",
-      "FTE Count High",
+      "FTE Impact (Low, #)",
+      "FTE Impact (High, #)",
       "Actions",
     ];
     setColumns(sampleColumns);
@@ -119,8 +119,8 @@ export default function Home() {
   const totals = {
     "Savings (Low, m€)": levers.reduce((sum, lever) => sum + lever["Savings (Low, m€)"], 0),
     "Savings (High, m€)": levers.reduce((sum, lever) => sum + lever["Savings (High, m€)"], 0),
-    "FTE Count Low": levers.reduce((sum, lever) => sum + lever["FTE Count Low"], 0),
-    "FTE Count High": levers.reduce((sum, lever) => sum + lever["FTE Count High"], 0),
+    "FTE Impact (Low, #)": levers.reduce((sum, lever) => sum + lever["FTE Impact (Low, #)"], 0),
+    "FTE Impact (High, #)": levers.reduce((sum, lever) => sum + lever["FTE Impact (High, #)"], 0),
   };
 
   return (
@@ -150,8 +150,8 @@ export default function Home() {
                     ))}
                     <td className="px-4 py-3 font-medium">{totals["Savings (Low, m€)"].toFixed(1)}</td>
                     <td className="px-4 py-3 font-medium">{totals["Savings (High, m€)"].toFixed(1)}</td>
-                    <td className="px-4 py-3 font-medium">{totals["FTE Count Low"]}</td>
-                    <td className="px-4 py-3 font-medium">{totals["FTE Count High"]}</td>
+                    <td className="px-4 py-3 font-medium">{totals["FTE Impact (Low, #)"]}</td>
+                    <td className="px-4 py-3 font-medium">{totals["FTE Impact (High, #)"]}</td>
                     <td className="px-4 py-3"></td>
                   </tr>
                 </thead>
