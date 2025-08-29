@@ -16,8 +16,8 @@ interface Lever {
   "Impacted BU": string;
   "Savings (Low, m€)": number;
   "Savings (High, m€)": number;
-  "FTE impact (Low, m€)": number;
-  "FTE impact (High, m€)": number;
+  "FTE Count Low": number;
+  "FTE Count High": number;
 }
 
 interface LeverRowProps {
@@ -61,10 +61,10 @@ function LeverRow({ lever }: LeverRowProps) {
         {lever["Savings (High, m€)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["FTE impact (Low, m€)"]}
+        {lever["FTE Count Low"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["FTE impact (High, m€)"]}
+        {lever["FTE Count High"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm">
         <div className="flex space-x-2">
@@ -108,8 +108,8 @@ export default function Home() {
       "Impacted BU",
       "Savings (Low, m€)",
       "Savings (High, m€)",
-      "FTE impact (Low, m€)",
-      "FTE impact (High, m€)",
+      "FTE Count Low",
+      "FTE Count High",
       "Actions",
     ];
     setColumns(sampleColumns);
@@ -119,8 +119,8 @@ export default function Home() {
   const totals = {
     "Savings (Low, m€)": levers.reduce((sum, lever) => sum + lever["Savings (Low, m€)"], 0),
     "Savings (High, m€)": levers.reduce((sum, lever) => sum + lever["Savings (High, m€)"], 0),
-    "FTE impact (Low, m€)": levers.reduce((sum, lever) => sum + lever["FTE impact (Low, m€)"], 0),
-    "FTE impact (High, m€)": levers.reduce((sum, lever) => sum + lever["FTE impact (High, m€)"], 0),
+    "FTE Count Low": levers.reduce((sum, lever) => sum + lever["FTE Count Low"], 0),
+    "FTE Count High": levers.reduce((sum, lever) => sum + lever["FTE Count High"], 0),
   };
 
   return (
@@ -150,8 +150,8 @@ export default function Home() {
                     ))}
                     <td className="px-4 py-3 font-medium">{totals["Savings (Low, m€)"].toFixed(1)}</td>
                     <td className="px-4 py-3 font-medium">{totals["Savings (High, m€)"].toFixed(1)}</td>
-                    <td className="px-4 py-3 font-medium">{totals["FTE impact (Low, m€)"].toFixed(1)}</td>
-                    <td className="px-4 py-3 font-medium">{totals["FTE impact (High, m€)"].toFixed(1)}</td>
+                    <td className="px-4 py-3 font-medium">{totals["FTE Count Low"]}</td>
+                    <td className="px-4 py-3 font-medium">{totals["FTE Count High"]}</td>
                     <td className="px-4 py-3"></td>
                   </tr>
                 </thead>

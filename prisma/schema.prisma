@@ -23,8 +23,8 @@ model Lever {
   impactedBU String @map("Impacted BU")
   savingsLowMEUR Float @map("Savings (Low, m€)")
   savingsHighMEUR Float @map("Savings (High, m€)")
-  fteImpactLowMEUR Float @map("FTE impact (Low, m€)")
-  fteImpactHighMEUR Float @map("FTE impact (High, m€)")
+  fteCountLow Int @map("FTE Count Low")
+  fteCountHigh Int @map("FTE Count High")
 
   @@map("levers")
 }
