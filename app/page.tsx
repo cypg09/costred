@@ -5,9 +5,79 @@ import { useState, useEffect } from "react";
 
 interface Lever {
   id: string;
-  function: string;
-  description: string;
-  impact: number;
+  Nature: string;
+  Workstream: string;
+  Substream: string;
+  Titre: string;
+  Description: string;
+  "Impact FTE [yes/no]": boolean;
+  Owner: string;
+  Complexity: string;
+  "Impacted BU": string;
+  "Savings (Low, m€)": number;
+  "Savings (High, m€)": number;
+  "FTE impact (Low, m€)": number;
+  "FTE impact (High, m€)": number;
+}
+
+interface LeverRowProps {
+  lever: Lever;
+}
+
+function LeverRow({ lever }: LeverRowProps) {
+  return (
+    <tr className="transition-colors hover:bg-gray-50/50">
+      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+        {lever.Nature}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+        {lever.Workstream}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+        {lever.Substream}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+        {lever.Titre}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+        {lever.Description}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+        {lever["Impact FTE [yes/no]"] ? "Yes" : "No"}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+        {lever.Owner}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+        {lever.Complexity}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+        {lever["Impacted BU"]}
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+        {lever["Savings (Low, m€)"]}M
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+        {lever["Savings (High, m€)"]}M
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+        {lever["FTE impact (Low, m€)"]}M
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+        {lever["FTE impact (High, m€)"]}M
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-sm">
+        <div className="flex space-x-2">
+          <button className="text-gray-500 hover:text-gray-700 transition-colors">
+            Edit
+          </button>
+          <button className="text-gray-500 hover:text-red-600 transition-colors">
+            Delete
+          </button>
+        </div>
+      </td>
+    </tr>
+  );
 }
 
 export default function Home() {
@@ -20,15 +90,35 @@ export default function Home() {
     const sampleData: Lever[] = [
       {
         id: "1",
-        function: "IT",
-        description: "Reduce cloud costs",
-        impact: 3000000,
+        Nature: "IT",
+        Workstream: "Cloud Optimization",
+        Substream: "Infrastructure",
+        Titre: "Reduce cloud costs",
+        Description: "Optimize cloud resource allocation and reduce unused instances",
+        "Impact FTE [yes/no]": false,
+        Owner: "IT Department",
+        Complexity: "Medium",
+        "Impacted BU": "All",
+        "Savings (Low, m€)": 2.5,
+        "Savings (High, m€)": 3.0,
+        "FTE impact (Low, m€)": 0,
+        "FTE impact (High, m€)": 0,
       },
       {
         id: "2",
-        function: "HR",
-        description: "Optimize recruitment process",
-        impact: 500000,
+        Nature: "HR",
+        Workstream: "Process Optimization",
+        Substream: "Recruitment",
+        Titre: "Optimize recruitment process",
+        Description: "Streamline hiring process and reduce agency fees",
+        "Impact FTE [yes/no]": true,
+        Owner: "HR Department",
+        Complexity: "Low",
+        "Impacted BU": "HR",
+        "Savings (Low, m€)": 0.4,
+        "Savings (High, m€)": 0.5,
+        "FTE impact (Low, m€)": 0.1,
+        "FTE impact (High, m€)": 0.2,
       },
     ];
     setLevers(sampleData);
@@ -50,19 +140,6 @@ export default function Home() {
     ]
     setColumns(sampleColumns)
   }, []);
-
-  // Calculate total impact
-  const totalImpact = levers.reduce((sum, lever) => sum + lever.impact, 0);
-
-  // Format currency
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
 
   return (
     <div className="min-h-screen p-8">
@@ -92,27 +169,7 @@ export default function Home() {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {levers.map((lever) => (
-                    <tr key={lever.id} className="transition-colors hover:bg-gray-50/50">
-                      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-                        {lever.function}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
-                        {lever.description}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-                        {formatCurrency(lever.impact)}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-sm">
-                        <div className="flex space-x-2">
-                          <button className="text-gray-500 hover:text-gray-700 transition-colors">
-                            Edit
-                          </button>
-                          <button className="text-gray-500 hover:text-red-600 transition-colors">
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                    <LeverRow key={lever.id} lever={lever} />
                   ))}
                 </tbody>
               </table>
