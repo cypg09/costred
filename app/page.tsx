@@ -10,7 +10,7 @@ interface Lever {
   Substream: string;
   Titre: string;
   Description: string;
-  "Impact FTE [yes/no]": boolean;
+  "FTE impact": boolean;
   Owner: string;
   Complexity: string;
   "Impacted BU": string;
@@ -43,7 +43,7 @@ function LeverRow({ lever }: LeverRowProps) {
         {lever.Description}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
-        {lever["Impact FTE [yes/no]"] ? "Yes" : "No"}
+        {lever["FTE impact"] ? "Yes" : "No"}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
         {lever.Owner}
@@ -55,16 +55,16 @@ function LeverRow({ lever }: LeverRowProps) {
         {lever["Impacted BU"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["Savings (Low, m€)"]}M
+        {lever["Savings (Low, m€)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["Savings (High, m€)"]}M
+        {lever["Savings (High, m€)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["FTE impact (Low, m€)"]}M
+        {lever["FTE impact (Low, m€)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
-        {lever["FTE impact (High, m€)"]}M
+        {lever["FTE impact (High, m€)"]}
       </td>
       <td className="whitespace-nowrap px-4 py-3 text-sm">
         <div className="flex space-x-2">
@@ -95,7 +95,7 @@ export default function Home() {
         Substream: "Infrastructure",
         Titre: "Reduce cloud costs",
         Description: "Optimize cloud resource allocation and reduce unused instances",
-        "Impact FTE [yes/no]": false,
+        "FTE impact": false,
         Owner: "IT Department",
         Complexity: "Medium",
         "Impacted BU": "All",
@@ -111,7 +111,7 @@ export default function Home() {
         Substream: "Recruitment",
         Titre: "Optimize recruitment process",
         Description: "Streamline hiring process and reduce agency fees",
-        "Impact FTE [yes/no]": true,
+        "FTE impact": true,
         Owner: "HR Department",
         Complexity: "Low",
         "Impacted BU": "HR",
@@ -128,7 +128,7 @@ export default function Home() {
       "Substream",
       "Titre",
       "Description",
-      "Impact FTE [yes/no]",
+      "FTE impact",
       "Owner",
       "Complexity",
       "Impacted BU",
@@ -142,7 +142,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 bg-gray-50">
       <header className="mb-8">
         <h1 className="text-3xl font-bold mb-4">Cost Reduction Reconciliation Tool</h1>
         <Link 
@@ -154,9 +154,9 @@ export default function Home() {
       </header>
       
       <main>
-        <div className="overflow-x-auto">
+        <div className=" overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+            <div className="overflow-hidden rounded-lg border border-gray-200">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead>
                   <tr className="text-white text-left bg-blue-950">
@@ -167,7 +167,7 @@ export default function Home() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y bg-white divide-gray-200">
                   {levers.map((lever) => (
                     <LeverRow key={lever.id} lever={lever} />
                   ))}
