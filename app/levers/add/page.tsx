@@ -24,12 +24,55 @@ export default function AddLever() {
     "FTE Impact (High, #)": "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would save this to a database or state management
-    console.log("New lever:", formData);
-    // For now, just redirect back to the main page
-    router.push("/");
+    
+    // Convert form data to the format expected by the API
+    const fteImpactBoolean = formData["FTE Impact"] === "true";
+    
+    const requestBody = {
+      nature: formData.Nature,
+      workstream: formData.Workstream,
+      substream: formData.Substream,
+      titre: formData.Titre,
+      description: formData.Description,
+      fteImpact: fteImpactBoolean,
+      owner: formData.Owner,
+      complexity: formData.Complexity,
+      impactedBU: formData["Impacted BU"],
+      savingsLow: parseFloat(formData["Savings (Low, m€)"]), // non-FTE savings low
+      savingsHigh: parseFloat(formData["Savings (High, m€)"]), // non-FTE savings high
+      // Only include FTE-related fields if FTE impact is true
+      ...(fteImpactBoolean && {
+        fteSavingsLow: parseFloat(formData["FTE Impact (Low, m€)"] || "0"), // FTE savings low
+        fteSavingsHigh: parseFloat(formData["FTE Impact (High, m€)"] || "0"), // FTE savings high
+        fteCountLow: parseInt(formData["FTE Impact (Low, #)"] || "0", 10), // FTE count low
+        fteCountHigh: parseInt(formData["FTE Impact (High, #)"] || "0", 10), // FTE count high
+      }),
+    };
+
+    try {
+      const response = await fetch('/api/levers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        // Lever added successfully, redirect to home
+        router.push('/');
+        router.refresh(); // Refresh the page data
+      } else {
+        // Handle error, e.g., show a message to the user
+        console.error('Failed to add lever');
+        // Optionally, add error state handling here
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle network error, e.g., show a message
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
