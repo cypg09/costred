@@ -141,6 +141,14 @@ export default function Home() {
     setColumns(sampleColumns)
   }, []);
 
+  // Calculate totals for numeric columns
+  const totals = {
+    "Savings (Low, m€)": levers.reduce((sum, lever) => sum + lever["Savings (Low, m€)"], 0),
+    "Savings (High, m€)": levers.reduce((sum, lever) => sum + lever["Savings (High, m€)"], 0),
+    "FTE impact (Low, m€)": levers.reduce((sum, lever) => sum + lever["FTE impact (Low, m€)"], 0),
+    "FTE impact (High, m€)": levers.reduce((sum, lever) => sum + lever["FTE impact (High, m€)"], 0),
+  };
+
   return (
     <div className="min-h-screen p-8 bg-gray-50">
       <header className="mb-8">
@@ -154,10 +162,26 @@ export default function Home() {
       </header>
       
       <main>
-        <div className=" overflow-x-auto">
+        <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden rounded-lg border border-gray-200">
               <table className="min-w-full divide-y divide-gray-200">
+                {/* Totals Row */}
+                <thead>
+                  <tr className="bg-gray-100 text-gray-900 font-bold">
+                    <td className="px-4 py-3">Totals</td>
+                    {/* Add empty cells for columns 2-9 (8 cells) */}
+                    {Array.from({ length: 8 }).map((_, index) => (
+                      <td key={index} className="px-4 py-3"></td>
+                    ))}
+                    <td className="px-4 py-3 font-medium">{totals["Savings (Low, m€)"].toFixed(1)}</td>
+                    <td className="px-4 py-3 font-medium">{totals["Savings (High, m€)"].toFixed(1)}</td>
+                    <td className="px-4 py-3 font-medium">{totals["FTE impact (Low, m€)"].toFixed(1)}</td>
+                    <td className="px-4 py-3 font-medium">{totals["FTE impact (High, m€)"].toFixed(1)}</td>
+                    <td className="px-4 py-3"></td>
+                  </tr>
+                </thead>
+                {/* Header Row */}
                 <thead>
                   <tr className="text-white text-left bg-blue-950">
                     {columns.map((column, index) => (
