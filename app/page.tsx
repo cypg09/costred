@@ -82,7 +82,7 @@ function LeverRow({ lever }: LeverRowProps) {
 
 export default function Home() {
   const [levers, setLevers] = useState<Lever[]>([]);
-  const [columns, setColumns] = useState<String[]>([]);
+  const [columns, setColumns] = useState<string[]>([]);
 
   // For now, we'll use mock data. In a real app, this would come from a database or API
   useEffect(() => {
@@ -122,7 +122,7 @@ export default function Home() {
       },
     ];
     setLevers(sampleData);
-    const sampleColumns: String[] = [
+    const sampleColumns: string[] = [
       "Nature",
       "Workstream",
       "Substream",
@@ -151,11 +151,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-8 bg-gray-50">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Cost Reduction Reconciliation Tool</h1>
+      <header className="max-w-4xl mx-auto mb-8">
+        <h1 className="text-3xl font-bold text-center mb-4">Cost Reduction Reconciliation Tool</h1>
         <Link 
           href="/levers/add" 
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white px-4 py-2 align-center rounded hover:bg-blue-600"
         >
           Add New Lever
         </Link>
