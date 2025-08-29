@@ -63,50 +63,54 @@ export default function Home() {
           <h2 className="text-2xl font-semibold mb-4">Total Impact: {formatCurrency(totalImpact)}</h2>
         </div>
         
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200">
-                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                  Function
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                  Description
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                  Impact
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {levers.map((lever) => (
-                <tr key={lever.id} className="transition-colors hover:bg-gray-50/50">
-                  <td className="px-4 py-3 text-sm font-medium text-gray-900">
-                    {lever.function}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-600">
-                    {lever.description}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-medium text-gray-900">
-                    {formatCurrency(lever.impact)}
-                  </td>
-                  <td className="px-4 py-3 text-sm">
-                    <div className="flex space-x-2">
-                      <button className="text-gray-500 hover:text-gray-700 transition-colors">
-                        Edit
-                      </button>
-                      <button className="text-gray-500 hover:text-red-600 transition-colors">
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="overflow-x-auto">
+          <div className="inline-block min-w-full align-middle">
+            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                      Function
+                    </th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                      Description
+                    </th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                      Impact
+                    </th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {levers.map((lever) => (
+                    <tr key={lever.id} className="transition-colors hover:bg-gray-50/50">
+                      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+                        {lever.function}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3 text-sm text-gray-600">
+                        {lever.description}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+                        {formatCurrency(lever.impact)}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3 text-sm">
+                        <div className="flex space-x-2">
+                          <button className="text-gray-500 hover:text-gray-700 transition-colors">
+                            Edit
+                          </button>
+                          <button className="text-gray-500 hover:text-red-600 transition-colors">
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         
         {levers.length === 0 && (
