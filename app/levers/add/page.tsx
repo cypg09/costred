@@ -228,7 +228,7 @@ export default function AddLever() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="Savings (Low, m€)" className="block text-sm font-medium text-gray-700 mb-2">
-                  Savings (Low, m€) *
+                  Non-FTE Savings (Low, m€) *
                 </label>
                 <input
                   type="number"
@@ -246,7 +246,7 @@ export default function AddLever() {
 
               <div>
                 <label htmlFor="Savings (High, m€)" className="block text-sm font-medium text-gray-700 mb-2">
-                  Savings (High, m€) *
+                  Non-FTE Savings (High, m€) *
                 </label>
                 <input
                   type="number"
