@@ -20,6 +20,8 @@ export default function AddLever() {
     "Savings (High, m€)": "",
     "FTE impact (Low, m€)": "",
     "FTE impact (High, m€)": "",
+    "FTE Impact (Low, #)": "",
+    "FTE Impact (High, #)": "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -260,41 +262,79 @@ export default function AddLever() {
                 />
               </div>
 
-              <div>
-                <label htmlFor="FTE impact (Low, m€)" className="block text-sm font-medium text-gray-700 mb-2">
-                  FTE Impact (Low, m€) *
-                </label>
-                <input
-                  type="number"
-                  id="FTE impact (Low, m€)"
-                  name="FTE impact (Low, m€)"
-                  value={formData["FTE impact (Low, m€)"]}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="0.1"
-                  step="0.1"
-                  min="0"
-                />
-              </div>
+              {formData["FTE impact"] === "true" && (
+                <>
+                  <div>
+                    <label htmlFor="FTE impact (Low, m€)" className="block text-sm font-medium text-gray-700 mb-2">
+                      FTE Savings (Low, m€) *
+                    </label>
+                    <input
+                      type="number"
+                      id="FTE impact (Low, m€)"
+                      name="FTE impact (Low, m€)"
+                      value={formData["FTE impact (Low, m€)"]}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      placeholder="0.1"
+                      step="0.1"
+                      min="0"
+                    />
+                  </div>
 
-              <div>
-                <label htmlFor="FTE impact (High, m€)" className="block text-sm font-medium text-gray-700 mb-2">
-                  FTE Impact (High, m€) *
-                </label>
-                <input
-                  type="number"
-                  id="FTE impact (High, m€)"
-                  name="FTE impact (High, m€)"
-                  value={formData["FTE impact (High, m€)"]}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="0.2"
-                  step="0.1"
-                  min="0"
-                />
-              </div>
+                  <div>
+                    <label htmlFor="FTE impact (High, m€)" className="block text-sm font-medium text-gray-700 mb-2">
+                      FTE Savings (High, m€) *
+                    </label>
+                    <input
+                      type="number"
+                      id="FTE impact (High, m€)"
+                      name="FTE impact (High, m€)"
+                      value={formData["FTE impact (High, m€)"]}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      placeholder="0.2"
+                      step="0.1"
+                      min="0"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="FTE Impact (Low, #)" className="block text-sm font-medium text-gray-700 mb-2">
+                      FTE Impact (Low, #) *
+                    </label>
+                    <input
+                      type="number"
+                      id="FTE Impact (Low, #)"
+                      name="FTE Impact (Low, #)"
+                      value={formData["FTE Impact (Low, #)"]}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      placeholder="10"
+                      min="0"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="FTE Impact (High, #)" className="block text-sm font-medium text-gray-700 mb-2">
+                      FTE Impact (High, #) *
+                    </label>
+                    <input
+                      type="number"
+                      id="FTE Impact (High, #)"
+                      name="FTE Impact (High, #)"
+                      value={formData["FTE Impact (High, #)"]}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      placeholder="20"
+                      min="0"
+                    />
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
