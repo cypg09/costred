@@ -60,29 +60,54 @@ export default function Home() {
       
       <main>
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold mb-2">Total Impact: {formatCurrency(totalImpact)}</h2>
+          <h2 className="text-2xl font-semibold mb-4">Total Impact: {formatCurrency(totalImpact)}</h2>
         </div>
         
-        <table className="min-w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border border-gray-300 px-4 py-2">Function</th>
-              <th className="border border-gray-300 px-4 py-2">Description</th>
-              <th className="border border-gray-300 px-4 py-2">Impact (€)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {levers.map((lever) => (
-              <tr key={lever.id}>
-                <td className="border border-gray-300 px-4 py-2">{lever.function}</td>
-                <td className="border border-gray-300 px-4 py-2">{lever.description}</td>
-                <td className="border border-gray-300 px-4 py-2 text-right">
-                  {formatCurrency(lever.impact)}
-                </td>
+        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                  Function
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                  Description
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                  Impact
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                  Actions
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {levers.map((lever) => (
+                <tr key={lever.id} className="transition-colors hover:bg-gray-50/50">
+                  <td className="px-4 py-3 text-sm font-medium text-gray-900">
+                    {lever.function}
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-600">
+                    {lever.description}
+                  </td>
+                  <td className="px-4 py-3 text-sm font-medium text-gray-900">
+                    {formatCurrency(lever.impact)}
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <div className="flex space-x-2">
+                      <button className="text-gray-500 hover:text-gray-700 transition-colors">
+                        Edit
+                      </button>
+                      <button className="text-gray-500 hover:text-red-600 transition-colors">
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         
         {levers.length === 0 && (
           <div className="text-center py-8 text-gray-500">
