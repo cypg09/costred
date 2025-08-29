@@ -84,44 +84,18 @@ export default function Home() {
   const [levers, setLevers] = useState<Lever[]>([]);
   const [columns, setColumns] = useState<string[]>([]);
 
-  // For now, we'll use mock data. In a real app, this would come from a database or API
   useEffect(() => {
-    // This is just sample data
-    const sampleData: Lever[] = [
-      {
-        id: "1",
-        Nature: "IT",
-        Workstream: "Cloud Optimization",
-        Substream: "Infrastructure",
-        Titre: "Reduce cloud costs",
-        Description: "Optimize cloud resource allocation and reduce unused instances",
-        "FTE impact": false,
-        Owner: "IT Department",
-        Complexity: "Medium",
-        "Impacted BU": "All",
-        "Savings (Low, m€)": 2.5,
-        "Savings (High, m€)": 3.0,
-        "FTE impact (Low, m€)": 0,
-        "FTE impact (High, m€)": 0,
-      },
-      {
-        id: "2",
-        Nature: "HR",
-        Workstream: "Process Optimization",
-        Substream: "Recruitment",
-        Titre: "Optimize recruitment process",
-        Description: "Streamline hiring process and reduce agency fees",
-        "FTE impact": true,
-        Owner: "HR Department",
-        Complexity: "Low",
-        "Impacted BU": "HR",
-        "Savings (Low, m€)": 0.4,
-        "Savings (High, m€)": 0.5,
-        "FTE impact (Low, m€)": 0.1,
-        "FTE impact (High, m€)": 0.2,
-      },
-    ];
-    setLevers(sampleData);
+    const fetchLevers = async () => {
+      const response = await fetch('/api/levers');
+      if (response.ok) {
+        const data = await response.json();
+        setLevers(data);
+      } else {
+        console.error('Failed to fetch levers');
+      }
+    };
+    fetchLevers();
+    
     const sampleColumns: string[] = [
       "Nature",
       "Workstream",
@@ -137,8 +111,8 @@ export default function Home() {
       "FTE impact (Low, m€)",
       "FTE impact (High, m€)",
       "Actions",
-    ]
-    setColumns(sampleColumns)
+    ];
+    setColumns(sampleColumns);
   }, []);
 
   // Calculate totals for numeric columns

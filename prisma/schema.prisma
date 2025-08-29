@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lever {
+  id String @id @default(cuid())
+  nature String @map("Nature")
+  workstream String @map("Workstream")
+  substream String @map("Substream")
+  titre String @map("Titre")
+  description String @map("Description")
+  fteImpact Boolean @map("FTE impact")
+  owner String @map("Owner")
+  complexity String @map("Complexity")
+  impactedBU String @map("Impacted BU")
+  savingsLowMEUR Float @map("Savings (Low, m€)")
+  savingsHighMEUR Float @map("Savings (High, m€)")
+  fteImpactLowMEUR Float @map("FTE impact (Low, m€)")
+  fteImpactHighMEUR Float @map("FTE impact (High, m€)")
+
+  @@map("levers")
+}
