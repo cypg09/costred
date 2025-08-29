@@ -12,14 +12,14 @@ export default function AddLever() {
     Substream: "",
     Titre: "",
     Description: "",
-    "FTE impact": "false",
+    "FTE Impact": "false",
     Owner: "",
     Complexity: "",
     "Impacted BU": "",
     "Savings (Low, m€)": "",
     "Savings (High, m€)": "",
-    "FTE impact (Low, m€)": "",
-    "FTE impact (High, m€)": "",
+    "FTE Impact (Low, m€)": "",
+    "FTE Impact (High, m€)": "",
     "FTE Impact (Low, #)": "",
     "FTE Impact (High, #)": "",
   });
@@ -154,13 +154,13 @@ export default function AddLever() {
             <h2 className="text-xl font-semibold text-gray-900 mb-6 pb-4 border-b border-gray-100">Impact & Ownership</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="FTE impact" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="FTE Impact" className="block text-sm font-medium text-gray-700 mb-2">
                   FTE Impact *
                 </label>
                 <select
-                  id="FTE impact"
-                  name="FTE impact"
-                  value={formData["FTE impact"]}
+                  id="FTE Impact"
+                  name="FTE Impact"
+                  value={formData["FTE Impact"]}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
@@ -262,17 +262,17 @@ export default function AddLever() {
                 />
               </div>
 
-              {formData["FTE impact"] === "true" && (
+              {formData["FTE Impact"] === "true" && (
                 <>
                   <div>
-                    <label htmlFor="FTE impact (Low, m€)" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="FTE Impact (Low, m€)" className="block text-sm font-medium text-gray-700 mb-2">
                       FTE Savings (Low, m€) *
                     </label>
                     <input
                       type="number"
-                      id="FTE impact (Low, m€)"
-                      name="FTE impact (Low, m€)"
-                      value={formData["FTE impact (Low, m€)"]}
+                      id="FTE Impact (Low, m€)"
+                      name="FTE Impact (Low, m€)"
+                      value={formData["FTE Impact (Low, m€)"]}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
@@ -283,14 +283,14 @@ export default function AddLever() {
                   </div>
 
                   <div>
-                    <label htmlFor="FTE impact (High, m€)" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="FTE Impact (High, m€)" className="block text-sm font-medium text-gray-700 mb-2">
                       FTE Savings (High, m€) *
                     </label>
                     <input
                       type="number"
-                      id="FTE impact (High, m€)"
-                      name="FTE impact (High, m€)"
-                      value={formData["FTE impact (High, m€)"]}
+                      id="FTE Impact (High, m€)"
+                      name="FTE Impact (High, m€)"
+                      value={formData["FTE Impact (High, m€)"]}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
